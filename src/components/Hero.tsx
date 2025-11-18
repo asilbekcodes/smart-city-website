@@ -3,6 +3,7 @@ import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../contexts/LanguageContext';
+import karshi from '../assets/qarshi.jpg';
 
 export function Hero() {
   const { t } = useLanguage();
@@ -10,9 +11,9 @@ export function Hero() {
   return (
     <section className="relative h-[600px] flex items-center justify-center">
       {/* Background image with blue overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-700/90">
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-950 to-blue-900/90">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1756798987926-67f510690d34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjaXR5JTIwc2t5bGluZSUyMHN1bnNldHxlbnwxfHx8fDE3NjI4NDU5NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
+          src={karshi}
           alt="Qarshi city"
           className="w-full h-full object-cover mix-blend-overlay"
         />
