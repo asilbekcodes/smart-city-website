@@ -33,7 +33,7 @@ export function Hero() {
           </p>
 
           {/* Search bar */}
-          <div className="max-w-xl">
+          {/* <div className="max-w-xl">
             <div className="flex gap-2 bg-white rounded-lg p-2">
               <Input 
                 placeholder={t('hero.search')}
@@ -43,7 +43,7 @@ export function Hero() {
                 <Search className="h-5 w-5" />
               </Button>
             </div>
-          </div>
+          </div> */}
 
           {/* Statistics cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">

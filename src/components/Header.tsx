@@ -42,7 +42,7 @@ export function Header() {
             <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
               <Search className="h-5 w-5 text-gray-600 dark:text-gray-400" />
             </button>
-            
+
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
@@ -55,39 +55,19 @@ export function Header() {
                 <Sun className="h-5 w-5 text-gray-600 dark:text-gray-400" />
               )}
             </button>
-            
-            {/* Language selector */}
-            <div className="flex items-center gap-1 border border-gray-300 dark:border-gray-600 rounded-lg p-1">
-              <button
-                onClick={() => setLanguage('uz')}
-                className={`px-3 py-1 text-sm rounded transition-colors ${
-                  language === 'uz' 
-                    ? 'bg-blue-600 text-white' 
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
+
+            {/* Language selector (select control) */}
+            <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded-lg px-2">
+              <select
+                aria-label="Select language"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as 'uz' | 'ru' | 'en')}
+                className="bg-transparent text-sm py-1 pr-4 pl-2 outline-none text-gray-700 dark:text-gray-300"
               >
-                UZB
-              </button>
-              <button
-                onClick={() => setLanguage('ru')}
-                className={`px-3 py-1 text-sm rounded transition-colors ${
-                  language === 'ru' 
-                    ? 'bg-blue-600 text-white' 
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
-              >
-                RUS
-              </button>
-              <button
-                onClick={() => setLanguage('en')}
-                className={`px-3 py-1 text-sm rounded transition-colors ${
-                  language === 'en' 
-                    ? 'bg-blue-600 text-white' 
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
-              >
-                ENG
-              </button>
+                <option value="uz">UZB</option>
+                <option value="ru">RUS</option>
+                <option value="en">ENG</option>
+              </select>
             </div>
           </div>
 
@@ -97,9 +77,9 @@ export function Header() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
-              <X className="h-6 w-6 dark:text-white" />
+              <X className="h-6 w-6 text-gray-700 dark:text-white" />
             ) : (
-              <Menu className="h-6 w-6 dark:text-white" />
+              <Menu className="h-6 w-6 text-gray-700 dark:text-white" />
             )}
           </button>
         </div>
@@ -117,7 +97,7 @@ export function Header() {
                 {item.name}
               </a>
             ))}
-            
+
             {/* Mobile theme toggle */}
             <div className="px-4 pt-2">
               <button
@@ -134,41 +114,19 @@ export function Header() {
                 )}
               </button>
             </div>
-            
-            {/* Mobile language selector */}
+
+            {/* Mobile language selector (select control) */}
             <div className="px-4 pt-2">
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setLanguage('uz')}
-                  className={`flex-1 px-3 py-2 text-sm rounded transition-colors ${
-                    language === 'uz' 
-                      ? 'bg-blue-600 text-white' 
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
-                  }`}
-                >
-                  UZB
-                </button>
-                <button
-                  onClick={() => setLanguage('ru')}
-                  className={`flex-1 px-3 py-2 text-sm rounded transition-colors ${
-                    language === 'ru' 
-                      ? 'bg-blue-600 text-white' 
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
-                  }`}
-                >
-                  RUS
-                </button>
-                <button
-                  onClick={() => setLanguage('en')}
-                  className={`flex-1 px-3 py-2 text-sm rounded transition-colors ${
-                    language === 'en' 
-                      ? 'bg-blue-600 text-white' 
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
-                  }`}
-                >
-                  ENG
-                </button>
-              </div>
+              <select
+                aria-label="Select language"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as 'uz' | 'ru' | 'en')}
+                className="w-full py-2 px-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg outline-none"
+              >
+                <option value="uz">UZB</option>
+                <option value="ru">RUS</option>
+                <option value="en">ENG</option>
+              </select>
             </div>
           </div>
         )}
