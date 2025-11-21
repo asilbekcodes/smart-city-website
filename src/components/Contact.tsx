@@ -93,23 +93,23 @@ export function Contact() {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.firstname')}</label>
-                  <Input placeholder={t('contact.form.firstname')} className="dark:bg-gray-700 dark:border-gray-600 !text-gray-800 dark:text-white" />
+                  <Input placeholder={t('contact.form.firstname')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
                 </div>
                 <div>
                   <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.lastname')}</label>
-                  <Input placeholder={t('contact.form.lastname')} className="dark:bg-gray-700 dark:border-gray-600 !text-gray-800 dark:text-white" />
+                  <Input placeholder={t('contact.form.lastname')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
                 </div>
               </div>
               <div>
                 <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Email yoki Telefon</label>
-                <Input type="text" placeholder="example@email.com yoki +998 (__) ___-__-__" className="dark:bg-gray-700 dark:border-gray-600 !text-gray-800 dark:text-white" />
+                <Input type="text" placeholder="example@email.com yoki +998 (__) ___-__-__" className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
               </div>
               <div>
-                <label className="block text-sm mb-2 !text-gray-700 dark:text-gray-300">Murojaat turi</label>
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Murojaat turi</label>
                 <select
                   value={requestType}
                   onChange={(e) => setRequestType(e.target.value)}
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm !text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="" className="bg-gray-300 dark:bg-gray-700">Murojaat turini tanlang</option>
                   {requestTypes.map((type) => (
@@ -121,13 +121,13 @@ export function Contact() {
               </div>
               <div>
                 <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.subject')}</label>
-                <Input placeholder={t('contact.form.subject')} className="dark:bg-gray-700 dark:border-gray-600 !text-gray-800 dark:text-white" />
+                <Input placeholder={t('contact.form.subject')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
               </div>
               <div>
                 <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.message')}</label>
                 <Textarea 
                   placeholder={t('contact.form.message')}
-                  className="min-h-32 dark:bg-gray-700 dark:border-gray-600 !text-gray-800 dark:text-white"
+                  className="min-h-32 dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white"
                 />
               </div>
               <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
