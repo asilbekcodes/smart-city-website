@@ -82,4 +82,24 @@
     "footer.copyright": "Все права защищены.",
     "footer.privacy": "Политика конфиденциальности",
     "footer.terms": "Условия использования"
+    ,
+    "footer.project.about": "О проекте",
+    "footer.project.goals": "Цели и задачи",
+    "footer.project.team": "Команда",
+    "footer.project.partners": "Партнёры",
+
+    "footer.services.electronic": "Электронные услуги",
+    "footer.services.smart": "Умные технологии",
+    "footer.services.infrastructure": "Инфраструктура",
+    "footer.services.monitoring": "Мониторинг",
+
+    "footer.info": "Информация",
+    "footer.info.news": "Новости",
+    "footer.info.announcements": "Объявления",
+    "footer.info.documents": "Документы",
+    "footer.info.faq": "FAQ",
+
+    "footer.help": "Помощь",
+    "footer.help.contact": "Контакты",
+    "footer.help.support": "Поддержка"
 }

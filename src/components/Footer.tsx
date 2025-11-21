@@ -4,33 +4,45 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 export function Footer() {
   const { t } = useLanguage();
-  
-  const footerLinks = {
-    [t('nav.project')]: [
-      'Biz haqimizda',
-      'Maqsad va vazifalar',
-      'Jamoamiz',
-      'Hamkorlar',
-    ],
-    [t('nav.services')]: [
-      'Elektron xizmatlar',
-      'Smart texnologiyalar',
-      'Infratuzilma',
-      'Monitoring',
-    ],
-    'Ma\'lumot': [
-      'Yangiliklar',
-      'E\'lonlar',
-      'Hujjatlar',
-      'FAQ',
-    ],
-    'Yordam': [
-      'Bog\'lanish',
-      'Qo\'llab-quvvatlash',
-      'Foydalanish shartlari',
-      'Maxfiylik siyosati',
-    ],
-  };
+
+  const footerLinks = [
+    {
+      title: t('nav.project'),
+      links: [
+        { label: t('footer.project.about'), href: '#about' },
+        { label: t('footer.project.goals'), href: '#about' },
+        { label: t('footer.project.team'), href: '#about' },
+        { label: t('footer.project.partners'), href: '#about' },
+      ],
+    },
+    {
+      title: t('nav.services'),
+      links: [
+        { label: t('footer.services.electronic'), href: '#services' },
+        { label: t('footer.services.smart'), href: '#services' },
+        { label: t('footer.services.infrastructure'), href: '#infra' },
+        { label: t('footer.services.monitoring'), href: '#statistics' },
+      ],
+    },
+    {
+      title: t('footer.info'),
+      links: [
+        { label: t('footer.info.news'), href: '#news' },
+        { label: t('footer.info.announcements'), href: '#announcements' },
+        { label: t('footer.info.documents'), href: '#documents' },
+        { label: t('footer.info.faq'), href: '#faq' },
+      ],
+    },
+    {
+      title: t('footer.help'),
+      links: [
+        { label: t('footer.help.contact'), href: '#contact' },
+        { label: t('footer.help.support'), href: '#contact' },
+        { label: t('footer.terms'), href: '#terms' },
+        { label: t('footer.privacy'), href: '#privacy' },
+      ],
+    },
+  ];
 
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -59,14 +71,14 @@ export function Footer() {
           </div>
 
           {/* Links */}
-          {Object.entries(footerLinks).map(([title, links]) => (
+          {footerLinks.map(({ title, links }) => (
             <div key={title}>
               <h4 className="text-white mb-4">{title}</h4>
               <ul className="space-y-2">
                 {links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm hover:text-blue-400 transition-colors">
-                      {link}
+                  <li key={link.href + link.label}>
+                    <a href={link.href} className="text-sm hover:text-blue-400 transition-colors">
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -79,8 +91,8 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
             <p>© 2025 Qarshi Smart City. {t('footer.copyright')}</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-blue-400 transition-colors">{t('footer.privacy')}</a>
-              <a href="#" className="hover:text-blue-400 transition-colors">{t('footer.terms')}</a>
+              <a href="#privacy" className="hover:text-blue-400 transition-colors">{t('footer.privacy')}</a>
+              <a href="#terms" className="hover:text-blue-400 transition-colors">{t('footer.terms')}</a>
             </div>
           </div>
         </div>

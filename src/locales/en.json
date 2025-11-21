@@ -82,4 +82,24 @@
     "footer.copyright": "All rights reserved.",
     "footer.privacy": "Privacy policy",
     "footer.terms": "Terms of use"
+    ,
+    "footer.project.about": "About us",
+    "footer.project.goals": "Goals and objectives",
+    "footer.project.team": "Team",
+    "footer.project.partners": "Partners",
+
+    "footer.services.electronic": "Electronic services",
+    "footer.services.smart": "Smart technologies",
+    "footer.services.infrastructure": "Infrastructure",
+    "footer.services.monitoring": "Monitoring",
+
+    "footer.info": "Information",
+    "footer.info.news": "News",
+    "footer.info.announcements": "Announcements",
+    "footer.info.documents": "Documents",
+    "footer.info.faq": "FAQ",
+
+    "footer.help": "Help",
+    "footer.help.contact": "Contact",
+    "footer.help.support": "Support"
 }

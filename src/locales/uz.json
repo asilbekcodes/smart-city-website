@@ -82,4 +82,24 @@
     "footer.copyright": "Barcha huquqlar himoyalangan.",
     "footer.privacy": "Maxfiylik siyosati",
     "footer.terms": "Foydalanish shartlari"
+    ,
+    "footer.project.about": "Biz haqimizda",
+    "footer.project.goals": "Maqsad va vazifalar",
+    "footer.project.team": "Jamoamiz",
+    "footer.project.partners": "Hamkorlar",
+
+    "footer.services.electronic": "Elektron xizmatlar",
+    "footer.services.smart": "Smart texnologiyalar",
+    "footer.services.infrastructure": "Infratuzilma",
+    "footer.services.monitoring": "Monitoring",
+
+    "footer.info": "Ma'lumot",
+    "footer.info.news": "Yangiliklar",
+    "footer.info.announcements": "E'lonlar",
+    "footer.info.documents": "Hujjatlar",
+    "footer.info.faq": "FAQ",
+
+    "footer.help": "Yordam",
+    "footer.help.contact": "Bog'lanish",
+    "footer.help.support": "Qo'llab-quvvatlash"
 }

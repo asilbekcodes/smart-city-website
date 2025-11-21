@@ -44,7 +44,7 @@ export function Infrastructure() {
   ];
 
   return (
-    <section className="py-20 bg-white dark:bg-gray-900 transition-colors">
+    <section className="py-20 bg-white dark:bg-gray-900 transition-colors" id="infra">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl md:text-4xl mb-4 dark:text-white">{t('infra.title')}</h2>
