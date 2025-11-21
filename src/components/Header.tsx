@@ -1,4 +1,4 @@
-import { Menu, X, Search, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Logo } from './Logo';
