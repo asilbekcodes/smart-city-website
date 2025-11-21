@@ -31,7 +31,7 @@ export function MobileApp() {
     <section className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl mb-4 dark:text-white">{t('app.title')}</h2>
+          <h2 className="text-3xl md:text-4xl mb-4 text-gray-700 dark:text-white">{t('app.title')}</h2>
           <p className="text-gray-600 dark:text-gray-400">
             {t('app.description')}
           </p>
@@ -44,7 +44,7 @@ export function MobileApp() {
               {/* Dashboard mockup */}
               <div className="bg-white rounded-xl p-6 space-y-4">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg">Dashboard</h3>
+                  <h3 className="text-lg text-gray-700">Dashboard</h3>
                   <div className="flex gap-2">
                     <div className="w-8 h-8 rounded-full bg-blue-100"></div>
                     <div className="w-8 h-8 rounded-full bg-green-100"></div>
@@ -88,7 +88,7 @@ export function MobileApp() {
                     </div>
                     <div>
                       <h3 className="text-lg mb-1">{feature.title}</h3>
-                      <p className="text-gray-600 text-sm">{feature.description}</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">{feature.description}</p>
                     </div>
                   </div>
                 );

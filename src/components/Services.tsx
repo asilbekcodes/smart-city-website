@@ -240,7 +240,7 @@ export function Services() {
     <section id="services" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl mb-4 dark:text-white">{t('services.title')}</h2>
+          <h2 className="text-3xl md:text-4xl mb-4 text-gray-700 dark:text-white">{t('services.title')}</h2>
           <p className="text-gray-600 dark:text-gray-400">
             {t('services.description')}
           </p>
@@ -256,13 +256,13 @@ export function Services() {
                     <div className={`${service.color} w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className="h-6 w-6 text-white" />
                     </div>
-                    <CardTitle className="text-lg dark:text-white">{service.title}</CardTitle>
+                    <CardTitle className="text-lg text-gray-700 dark:text-white">{service.title}</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     {service.items.map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                      <li key={idx} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                         <div className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-gray-500"></div>
                         {item}
                       </li>

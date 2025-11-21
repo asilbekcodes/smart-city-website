@@ -47,7 +47,7 @@ export function Infrastructure() {
     <section className="py-20 bg-white dark:bg-gray-900 transition-colors" id="infra">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl mb-4 dark:text-white">{t('infra.title')}</h2>
+          <h2 className="text-3xl md:text-4xl mb-4 text-gray-700 dark:text-white">{t('infra.title')}</h2>
           <p className="text-gray-600 dark:text-gray-400">
             {t('infra.description')}
           </p>
@@ -61,7 +61,7 @@ export function Infrastructure() {
                 <div className={`${category.iconColor} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}>
                   <Icon className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl mb-4 dark:text-white">{category.title}</h3>
+                <h3 className="text-xl mb-4 text-gray-700 dark:text-white">{category.title}</h3>
                 <ul className="space-y-2">
                   {category.items.map((item, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">

@@ -29,7 +29,7 @@ export function AboutProject() {
     <section id="about" className="py-20 bg-white dark:bg-gray-900 transition-colors">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl mb-4 dark:text-white">{t('about.title')}</h2>
+          <h2 className="text-3xl md:text-4xl mb-4 text-gray-700 dark:text-white">{t('about.title')}</h2>
           <p className="text-gray-600 dark:text-gray-400">
             {t('about.description')}
           </p>
@@ -43,7 +43,7 @@ export function AboutProject() {
                 <div className={`${feature.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4`}>
                   <Icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl mb-3 dark:text-white">{feature.title}</h3>
+                <h3 className="text-xl mb-3 text-gray-700 dark:text-white">{feature.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
               </div>
             );

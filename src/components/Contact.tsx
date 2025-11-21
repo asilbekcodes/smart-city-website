@@ -44,7 +44,7 @@ export function Contact() {
     <section id="contact" className="py-20 bg-white dark:bg-gray-900 transition-colors">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl mb-4 dark:text-white">{t('contact.title')}</h2>
+          <h2 className="text-3xl md:text-4xl mb-4 text-gray-700 dark:text-white">{t('contact.title')}</h2>
           <p className="text-gray-600 dark:text-gray-400">
             {t('contact.description')}
           </p>
@@ -61,7 +61,7 @@ export function Contact() {
                     <Icon className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="mb-2 dark:text-white">{item.title}</h3>
+                    <h3 className="mb-2 text-gray-700 dark:text-white">{item.title}</h3>
                     {item.details.map((detail, idx) => (
                       <p key={idx} className="text-gray-600 dark:text-gray-400 text-sm">
                         {detail}
@@ -88,46 +88,46 @@ export function Contact() {
 
           {/* Contact form */}
           <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 transition-colors shadow-lg">
-            <h3 className="text-2xl mb-6 dark:text-white">{t('contact.form.title')}</h3>
+            <h3 className="text-2xl mb-6 text-gray-700 dark:text-white">{t('contact.form.title')}</h3>
             <form className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm mb-2 dark:text-gray-300">{t('contact.form.firstname')}</label>
-                  <Input placeholder={t('contact.form.firstname')} className="dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                  <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.firstname')}</label>
+                  <Input placeholder={t('contact.form.firstname')} className="dark:bg-gray-700 dark:border-gray-600 !text-gray-800 dark:text-white" />
                 </div>
                 <div>
-                  <label className="block text-sm mb-2 dark:text-gray-300">{t('contact.form.lastname')}</label>
-                  <Input placeholder={t('contact.form.lastname')} className="dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                  <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.lastname')}</label>
+                  <Input placeholder={t('contact.form.lastname')} className="dark:bg-gray-700 dark:border-gray-600 !text-gray-800 dark:text-white" />
                 </div>
               </div>
               <div>
-                <label className="block text-sm mb-2 dark:text-gray-300">Email yoki Telefon</label>
-                <Input type="text" placeholder="example@email.com yoki +998 (__) ___-__-__" className="dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Email yoki Telefon</label>
+                <Input type="text" placeholder="example@email.com yoki +998 (__) ___-__-__" className="dark:bg-gray-700 dark:border-gray-600 !text-gray-800 dark:text-white" />
               </div>
               <div>
-                <label className="block text-sm mb-2 dark:text-gray-300">Murojaat turi</label>
+                <label className="block text-sm mb-2 !text-gray-700 dark:text-gray-300">Murojaat turi</label>
                 <select
                   value={requestType}
                   onChange={(e) => setRequestType(e.target.value)}
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm !text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
-                  <option value="" className="dark:bg-gray-700">Murojaat turini tanlang</option>
+                  <option value="" className="bg-gray-300 dark:bg-gray-700">Murojaat turini tanlang</option>
                   {requestTypes.map((type) => (
-                    <option key={type.value} value={type.value} className="dark:bg-gray-700">
+                    <option key={type.value} value={type.value} className="text-gray-700 dark:text-white bg-white dark:bg-gray-700">
                       {type.label}
                     </option>
                   ))}
                 </select>
               </div>
               <div>
-                <label className="block text-sm mb-2 dark:text-gray-300">{t('contact.form.subject')}</label>
-                <Input placeholder={t('contact.form.subject')} className="dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.subject')}</label>
+                <Input placeholder={t('contact.form.subject')} className="dark:bg-gray-700 dark:border-gray-600 !text-gray-800 dark:text-white" />
               </div>
               <div>
-                <label className="block text-sm mb-2 dark:text-gray-300">{t('contact.form.message')}</label>
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.message')}</label>
                 <Textarea 
                   placeholder={t('contact.form.message')}
-                  className="min-h-32 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className="min-h-32 dark:bg-gray-700 dark:border-gray-600 !text-gray-800 dark:text-white"
                 />
               </div>
               <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
