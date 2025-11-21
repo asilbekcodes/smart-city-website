@@ -50,9 +50,9 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+            {/* <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
               <Search className="h-5 w-5 text-gray-600 dark:text-gray-400" />
-            </button>
+            </button> */}
 
             {/* Theme toggle */}
             <button

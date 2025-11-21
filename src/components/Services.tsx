@@ -1,9 +1,9 @@
-import { 
-  FileText, 
-  Users, 
-  Building2, 
-  Briefcase, 
-  Zap, 
+import {
+  FileText,
+  Users,
+  Building2,
+  Briefcase,
+  Zap,
   Heart,
   GraduationCap,
   Bus,
@@ -20,188 +20,217 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useState } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogHeader,
+  DialogFooter,
+  DialogClose,
+} from './ui/dialog';
 
 export function Services() {
   const { t } = useLanguage();
-  
+
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const services = [
     {
+      key: 'docs',
       icon: FileText,
       title: t('service.docs'),
       items: [
-        'Hujjat olish',
-        'Onlayn ariza',
-        'Status tekshirish',
+        t('service.docs.item1'),
+        t('service.docs.item2'),
+        t('service.docs.item3'),
       ],
       color: 'bg-blue-500',
     },
     {
+      key: 'infrastructure',
       icon: Building2,
       title: t('service.infrastructure'),
       items: [
-        'Binolar ma\'lumoti',
-        'Reja-loyihalar',
-        'Qurilish litsenziyasi',
+        t('service.infrastructure.item1'),
+        t('service.infrastructure.item2'),
+        t('service.infrastructure.item3'),
       ],
       color: 'bg-teal-500',
     },
     {
+      key: 'social',
       icon: Users,
       title: t('service.social'),
       items: [
-        'Fuqarolar uchun',
-        'Ijtimoiy yordam',
-        'Pensiya ishlari',
+        t('service.social.item1'),
+        t('service.social.item2'),
+        t('service.social.item3'),
       ],
       color: 'bg-red-500',
     },
     {
+      key: 'economy',
       icon: Briefcase,
       title: t('service.economy'),
       items: [
-        'Biznes rivojlantirish',
-        'Investitsiya loyihalari',
-        'Grant dasturlari',
+        t('service.economy.item1'),
+        t('service.economy.item2'),
+        t('service.economy.item3'),
       ],
       color: 'bg-purple-500',
     },
     {
+      key: 'smart',
       icon: Zap,
       title: t('service.smart'),
       items: [
-        'Smart yoritish',
-        'IoT tizimlar',
-        'Monitorinq',
+        t('service.smart.item1'),
+        t('service.smart.item2'),
+        t('service.smart.item3'),
       ],
       color: 'bg-yellow-500',
     },
     {
+      key: 'health',
       icon: Heart,
       title: t('service.health'),
       items: [
-        'Tibbiy muassasalar',
-        'Onlayn qabulga yozilish',
-        'Shifokorlar bazasi',
+        t('service.health.item1'),
+        t('service.health.item2'),
+        t('service.health.item3'),
       ],
       color: 'bg-red-500',
     },
     {
+      key: 'education',
       icon: GraduationCap,
       title: t('service.education'),
       items: [
-        'Maktablar ma\'lumoti',
-        'Bog\'chalar',
-        'Onlayn kurslar',
+        t('service.education.item1'),
+        t('service.education.item2'),
+        t('service.education.item3'),
       ],
       color: 'bg-indigo-500',
     },
     {
+      key: 'transport',
       icon: Bus,
       title: t('service.transport'),
       items: [
-        'Marshrut ma\'lumotlari',
-        'Real vaqt kuzatuv',
-        'Tarif va jadvallar',
+        t('service.transport.item1'),
+        t('service.transport.item2'),
+        t('service.transport.item3'),
       ],
       color: 'bg-orange-500',
     },
     {
+      key: 'housing',
       icon: Home,
       title: t('service.housing'),
       items: [
-        'Kommunal to\'lovlar',
-        'Uy-joy masalalari',
-        'Dispetcher xizmati',
+        t('service.housing.item1'),
+        t('service.housing.item2'),
+        t('service.housing.item3'),
       ],
       color: 'bg-green-500',
     },
     {
+      key: 'water',
       icon: Droplets,
       title: t('service.water'),
       items: [
-        'Suv resurslari',
-        'Iste\'mol nazorati',
-        'Onlayn to\'lovlar',
+        t('service.water.item1'),
+        t('service.water.item2'),
+        t('service.water.item3'),
       ],
       color: 'bg-cyan-500',
     },
     {
+      key: 'wifi',
       icon: Wifi,
       title: t('service.wifi'),
       items: [
-        'Jamoat joylarida Wi-Fi',
-        'Xarita va manzillar',
-        'Ulanish ko\'rsatmalari',
+        t('service.wifi.item1'),
+        t('service.wifi.item2'),
+        t('service.wifi.item3'),
       ],
       color: 'bg-blue-400',
     },
     {
+      key: 'security',
       icon: Camera,
       title: t('service.security'),
       items: [
-        'Video monitoring',
-        'Favqulodda vaziyatlar',
-        'Onlayn qo\'llab-quvvatlash',
+        t('service.security.item1'),
+        t('service.security.item2'),
+        t('service.security.item3'),
       ],
       color: 'bg-gray-700',
     },
     {
+      key: 'ecology',
       icon: TreePine,
       title: t('service.ecology'),
       items: [
-        'Park va bog\'lar',
-        'Atrof-muhit monitoring',
-        'Daraxt ekish dasturlari',
+        t('service.ecology.item1'),
+        t('service.ecology.item2'),
+        t('service.ecology.item3'),
       ],
       color: 'bg-emerald-500',
     },
     {
+      key: 'news',
       icon: Newspaper,
       title: t('service.news'),
       items: [
-        'Shahar yangiliklari',
-        'Rasmiy e\'lonlar',
-        'Tadbirlar kalendari',
+        t('service.news.item1'),
+        t('service.news.item2'),
+        t('service.news.item3'),
       ],
       color: 'bg-pink-500',
     },
     {
+      key: 'tax',
       icon: Calculator,
       title: t('service.tax'),
       items: [
-        'Soliq hisob-kitoblari',
-        'Onlayn to\'lovlar',
-        'Qarzlar ma\'lumoti',
+        t('service.tax.item1'),
+        t('service.tax.item2'),
+        t('service.tax.item3'),
       ],
       color: 'bg-amber-500',
     },
     {
+      key: 'legal',
       icon: ShieldCheck,
       title: t('service.legal'),
       items: [
-        'Onlayn maslahatlar',
-        'Hujjat namunalari',
-        'Murojaat qilish',
+        t('service.legal.item1'),
+        t('service.legal.item2'),
+        t('service.legal.item3'),
       ],
       color: 'bg-violet-500',
     },
     {
+      key: 'auto',
       icon: Car,
       title: t('service.auto'),
       items: [
-        'Avtomashina ro\'yxati',
-        'Jarima ma\'lumotlari',
-        'Parkinglar',
+        t('service.auto.item1'),
+        t('service.auto.item2'),
+        t('service.auto.item3'),
       ],
       color: 'bg-slate-600',
     },
     {
+      key: 'government',
       icon: Landmark,
       title: t('service.government'),
       items: [
-        'Davlat xizmatlari',
-        'Qabulxonalar',
-        'Onlayn navbat',
+        t('service.government.item1'),
+        t('service.government.item2'),
+        t('service.government.item3'),
       ],
       color: 'bg-blue-600',
     },
@@ -239,8 +268,11 @@ export function Services() {
                       </li>
                     ))}
                   </ul>
-                  <button className="mt-4 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Batafsil
+                  <button
+                    onClick={() => setOpenIndex(index)}
+                    className="mt-4 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 flex items-center gap-1 group-hover:gap-2 transition-all"
+                  >
+                    {t('services.details')}
                     <span>→</span>
                   </button>
                 </CardContent>
@@ -248,6 +280,54 @@ export function Services() {
             );
           })}
         </div>
+
+        {/* Modal for service details */}
+        <Dialog open={openIndex !== null} onOpenChange={(open) => { if (!open) setOpenIndex(null); }}>
+          {openIndex !== null && (
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>{services[openIndex].title}</DialogTitle>
+              </DialogHeader>
+              <DialogDescription>
+                <ul className="mt-2 space-y-2">
+                  {services[openIndex].items.map((it: string, i: number) => (
+                    <li key={i} className="text-sm text-gray-700 dark:text-gray-300">• {it}</li>
+                  ))}
+                </ul>
+
+                {/* Render rich detail: paragraphs and optional bullet groups from translation text */}
+                <div className="mt-4 text-sm text-gray-700 dark:text-gray-300">
+                  {services[openIndex].key && (() => {
+                    const raw = t(`service.${services[openIndex].key}.detail`);
+                    if (!raw) return null;
+                    const parts = raw.split('\n\n');
+                    return parts.map((part, idx) => {
+                      const trimmed = part.trim();
+                      if (!trimmed) return null;
+                      // bullet group: lines starting with '- '
+                      if (trimmed.startsWith('-')) {
+                        const items = trimmed.split('\n').map(l => l.replace(/^[-\s]+/, '').trim());
+                        return (
+                          <ul key={idx} className="list-disc list-inside mt-2 text-sm text-gray-700 dark:text-gray-300">
+                            {items.map((it, i) => (
+                              <li key={i}>{it}</li>
+                            ))}
+                          </ul>
+                        );
+                      }
+                      return <p key={idx} className="mt-2">{trimmed}</p>;
+                    });
+                  })()}
+                </div>
+              </DialogDescription>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <button className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded">{t('services.close')}</button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          )}
+        </Dialog>
       </div>
     </section>
   );
