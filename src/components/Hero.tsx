@@ -1,6 +1,3 @@
-import { Search } from 'lucide-react';
-import { Input } from './ui/input';
-import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from '../contexts/LanguageContext';
 import karshi from '../assets/qarshi.jpg';

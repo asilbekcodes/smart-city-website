@@ -1,13 +1,11 @@
 import { Menu, X, Search, Sun, Moon } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { useTheme } from '../contexts/ThemeContext';
 import { Logo } from './Logo';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
 
   const navigation = [
     { name: t('nav.home'), href: '#' },
@@ -16,6 +14,19 @@ export function Header() {
     { name: t('nav.news'), href: '#news' },
     { name: t('nav.contact'), href: '#contact' },
   ];
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
 
   return (
     <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50 transition-colors">
@@ -45,7 +56,7 @@ export function Header() {
 
             {/* Theme toggle */}
             <button
-              onClick={toggleTheme}
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               aria-label="Toggle theme"
             >
@@ -62,7 +73,7 @@ export function Header() {
                 aria-label="Select language"
                 value={language}
                 onChange={(e) => setLanguage(e.target.value as 'uz' | 'ru' | 'en')}
-                className="bg-transparent text-sm py-1 pr-4 pl-2 outline-none text-gray-700 dark:text-gray-300"
+                className="text-sm py-1 pr-4 pl-2 outline-none bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
               >
                 <option value="uz">UZB</option>
                 <option value="ru">RUS</option>
@@ -101,7 +112,7 @@ export function Header() {
             {/* Mobile theme toggle */}
             <div className="px-4 pt-2">
               <button
-                onClick={toggleTheme}
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 className="w-full flex items-center justify-between px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg"
               >
                 <span className="text-sm text-gray-700 dark:text-gray-300">

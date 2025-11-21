@@ -11,7 +11,7 @@ export function Statistics() {
     { value: '4500+', label: t('stats.indicators') },
     { value: '95%', label: t('stats.efficiency') },
     { value: '247', label: t('stats.projects') },
-    { value: '87%', label: t('stats.satisfaction') },
+    { value: '1325', label: t('stats.satisfaction') },
   ];
 
   return (
