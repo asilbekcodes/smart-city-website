@@ -3,7 +3,7 @@ import axios from "axios";
 import i18n from "../locales/config";
 
 
- const API_BASE_URL = "https://45.138.158.158:4443/api/"; // global server
+ const API_BASE_URL = "https://api.smart-city-qarshi.uz/api/"; // global server
 
 const api = axios.create({
   baseURL: API_BASE_URL,

@@ -3,8 +3,8 @@ import api from "../api/api"
 export interface createAppeals {
     firstName: string,
     lastName: string,
-    email: string,
-    phone: string,
+    email?: string,
+    phone?: string,
     title: string,
     message: string,
     type: string,
