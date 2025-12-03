@@ -1,14 +1,17 @@
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
 import { useLanguage } from '../contexts/LanguageContext';
+import { getCompanies, getSectors } from '../services/appeals';
 
 export function Contact() {
   const { t } = useLanguage();
   const [requestType, setRequestType] = useState('');
-  
+  const [sectorType, setSectorType] = useState('')
+  const [companies, setCompanies] = useState('')
+
   const contactInfo = [
     {
       icon: MapPin,
@@ -39,6 +42,45 @@ export function Contact() {
     { value: 'thanks', label: 'Rahmat' },
     { value: 'other', label: 'Boshqa' },
   ];
+
+
+  const sectorTypes = [
+    { value: 'ecology', label: 'Ecology'},
+    { value: 'security', label: 'Security'},
+    { value: 'education', label: 'Education'},
+    { value: 'transport', label: 'Transport'},
+  ]
+
+  const companiesTypes = [
+    { value: 'qwerty', label: 'qwerty'},
+    { value: 'qwerty', label: 'qwerty'},
+    { value: 'qwerty', label: 'qwerty'},
+  ]
+
+
+  const sectorGet = async () => {
+    try {
+      const res = await getSectors()
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const companiesGet = async () => {
+    try {
+      const res = await getCompanies()
+      // setCompanies(res)
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() =>{
+    sectorGet()
+    companiesGet()
+  }, [])
 
   return (
     <section id="contact" className="py-20 bg-white dark:bg-gray-900 transition-colors">
@@ -100,9 +142,45 @@ export function Contact() {
                   <Input placeholder={t('contact.form.lastname')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
                 </div>
               </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Telefon</label>
+                  <Input type="text" placeholder="+998 (__) ___-__-__" className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
+                </div>
+                <div>
+                  <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Email</label>
+                  <Input type="text" placeholder="example@email.com" className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
+                </div>
+              </div>
               <div>
-                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Email yoki Telefon</label>
-                <Input type="text" placeholder="example@email.com yoki +998 (__) ___-__-__" className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Tashkilot nomi</label>
+                <select
+                  value={companies}
+                  onChange={(e) => setCompanies(e.target.value)}
+                  className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="" className="bg-gray-300 dark:bg-gray-700">Tashkilotni tanlang</option>
+                  {companiesTypes.map((type) => (
+                    <option key={type.value} value={type.value} className="text-gray-700 dark:text-white bg-white dark:bg-gray-700">
+                      {type.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Sektor turi</label>
+                <select
+                  value={sectorType}
+                  onChange={(e) => setSectorType(e.target.value)}
+                  className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="" className="bg-gray-300 dark:bg-gray-700">Sektorni tanlang</option>
+                  {sectorTypes.map((type) => (
+                    <option key={type.value} value={type.value} className="text-gray-700 dark:text-white bg-white dark:bg-gray-700">
+                      {type.label}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Murojaat turi</label>
@@ -125,7 +203,7 @@ export function Contact() {
               </div>
               <div>
                 <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.message')}</label>
-                <Textarea 
+                <Textarea
                   placeholder={t('contact.form.message')}
                   className="min-h-32 dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white"
                 />
