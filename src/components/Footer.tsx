@@ -50,7 +50,7 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
           {/* Logo and description */}
           <div className="lg:col-span-2">
-            <Logo className="h-10 w-auto mb-4 brightness-0 invert" />
+            <Logo className="h-10 w-auto" />
             <p className="text-sm text-gray-400 mb-6">
               {t('footer.description')}
             </p>
