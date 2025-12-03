@@ -76,27 +76,29 @@ export function Contact() {
       details: ['Dushanba–Juma: 9:00–18:00', 'Shanba: 9:00–13:00'],
     },
   ];
-
-  const sectorGet = async () => {
-    try {
-      const res = await getSectors();
-      setSectors(res.data.sectors);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const companiesGet = async () => {
-    try {
-      const res = await getCompanies();
-      setCompaniesList(res.data.companies);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  
+  useEffect(() => {
+    const sectorGet = async () => {
+      try {
+        const res = await getSectors();
+        setSectors(res.data.sectors);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    sectorGet()
+  }, [])
 
   useEffect(() => {
-    sectorGet();
+    const companiesGet = async () => {
+      try {
+        const res = await getCompanies();
+        setCompaniesList(res.data.companies);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
     companiesGet();
   }, []);
 
