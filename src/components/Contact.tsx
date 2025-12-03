@@ -4,13 +4,21 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
 import { useLanguage } from '../contexts/LanguageContext';
-import { getCompanies, getSectors } from '../services/appeals';
+import { createAppeals, getCompanies, getSectors } from '../services/appeals';
 
 export function Contact() {
   const { t } = useLanguage();
   const [requestType, setRequestType] = useState('');
   const [sectorType, setSectorType] = useState('')
   const [companies, setCompanies] = useState('')
+  const [sectors, setSectors] = useState([]);
+  const [companiesList, setCompaniesList] = useState([]);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [title, setTitle] = useState('');
+  const [message, setMessage] = useState('');
 
   const contactInfo = [
     {
@@ -44,24 +52,12 @@ export function Contact() {
   ];
 
 
-  const sectorTypes = [
-    { value: 'ecology', label: 'Ecology'},
-    { value: 'security', label: 'Security'},
-    { value: 'education', label: 'Education'},
-    { value: 'transport', label: 'Transport'},
-  ]
-
-  const companiesTypes = [
-    { value: 'qwerty', label: 'qwerty'},
-    { value: 'qwerty', label: 'qwerty'},
-    { value: 'qwerty', label: 'qwerty'},
-  ]
 
 
   const sectorGet = async () => {
     try {
       const res = await getSectors()
-      console.log(res);
+      setSectors(res.data.sectors);
     } catch (err) {
       console.log(err);
     }
@@ -70,17 +66,45 @@ export function Contact() {
   const companiesGet = async () => {
     try {
       const res = await getCompanies()
-      // setCompanies(res)
-      console.log(res);
+      setCompaniesList(res.data.companies);
     } catch (err) {
       console.log(err);
     }
   }
 
-  useEffect(() =>{
+  useEffect(() => {
     sectorGet()
     companiesGet()
   }, [])
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      title,
+      message,
+      type: requestType,
+      sector: sectorType,
+      company: companies,
+      priority: "medium",
+      location: {
+        district: "string",
+        address: "string"
+      }
+    }
+    try {
+      const res = await createAppeals(data)
+      console.log(res);
+
+    } catch (err) {
+      console.log(err);
+
+    }
+  }
 
   return (
     <section id="contact" className="py-20 bg-white dark:bg-gray-900 transition-colors">
@@ -131,25 +155,25 @@ export function Contact() {
           {/* Contact form */}
           <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 transition-colors shadow-lg">
             <h3 className="text-2xl mb-6 text-gray-700 dark:text-white">{t('contact.form.title')}</h3>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.firstname')}</label>
-                  <Input placeholder={t('contact.form.firstname')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
+                  <Input value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder={t('contact.form.firstname')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
                 </div>
                 <div>
                   <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.lastname')}</label>
-                  <Input placeholder={t('contact.form.lastname')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
+                  <Input value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder={t('contact.form.lastname')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
                 </div>
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Telefon</label>
-                  <Input type="text" placeholder="+998 (__) ___-__-__" className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
+                  <Input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+998 (__) ___-__-__" className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
                 </div>
                 <div>
                   <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Email</label>
-                  <Input type="text" placeholder="example@email.com" className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
+                  <Input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
                 </div>
               </div>
               <div>
@@ -160,9 +184,9 @@ export function Contact() {
                   className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="" className="bg-gray-300 dark:bg-gray-700">Tashkilotni tanlang</option>
-                  {companiesTypes.map((type) => (
-                    <option key={type.value} value={type.value} className="text-gray-700 dark:text-white bg-white dark:bg-gray-700">
-                      {type.label}
+                  {companiesList.map((company) => (
+                    <option key={company._id} value={company._id} className="text-gray-700 dark:text-white bg-white dark:bg-gray-700">
+                      {company.name}
                     </option>
                   ))}
                 </select>
@@ -175,9 +199,9 @@ export function Contact() {
                   className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="" className="bg-gray-300 dark:bg-gray-700">Sektorni tanlang</option>
-                  {sectorTypes.map((type) => (
-                    <option key={type.value} value={type.value} className="text-gray-700 dark:text-white bg-white dark:bg-gray-700">
-                      {type.label}
+                  {sectors.map((sector) => (
+                    <option key={sector.slug} value={sector.slug} className="text-gray-700 dark:text-white bg-white dark:bg-gray-700">
+                      {sector.name}
                     </option>
                   ))}
                 </select>
@@ -199,11 +223,13 @@ export function Contact() {
               </div>
               <div>
                 <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.subject')}</label>
-                <Input placeholder={t('contact.form.subject')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
+                <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t('contact.form.subject')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
               </div>
               <div>
                 <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.message')}</label>
                 <Textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   placeholder={t('contact.form.message')}
                   className="min-h-32 dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white"
                 />

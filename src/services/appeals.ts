@@ -1,7 +1,24 @@
 import api from "../api/api"
 
+export interface createAppeals {
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string,
+    title: string,
+    message: string,
+    type: string,
+    sector: string,
+    company: string,
+    priority: string,
+    location: {
+        district: string,
+        address: string
+    }
+}
 
-export const createAppeals = async (data: string) => {
+
+export const createAppeals = async (data: createAppeals) => {
     const res = await api.post('/sectors/appeals', data)
     return res.data 
 }
