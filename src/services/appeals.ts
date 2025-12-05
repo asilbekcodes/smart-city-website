@@ -1,16 +1,13 @@
 import api from "../api/api"
 
 export interface createAppeals {
-    firstName: string,
-    lastName: string,
+    fullName: string,
     email?: string,
     phone?: string,
-    title: string,
     message: string,
     type: string,
     sector: string,
     company: string,
-    priority: string,
     location: {
         district: string,
         address: string

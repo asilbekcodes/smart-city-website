@@ -9,6 +9,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { LanguageProvider } from './contexts/LanguageContext';
 // import { ThemeProvider } from './contexts/ThemeContext';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           </main>
           <Footer />
         </div>
+        <Toaster />
       </LanguageProvider>
     // </ThemeProvider>
   );

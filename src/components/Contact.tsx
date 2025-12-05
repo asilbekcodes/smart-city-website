@@ -5,6 +5,7 @@ import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
 import { useLanguage } from '../contexts/LanguageContext';
 import { createAppeals, getCompanies, getSectors } from '../services/appeals';
+import { toast } from 'react-hot-toast';
 
 export function Contact() {
   const { t } = useLanguage();
@@ -15,26 +16,23 @@ export function Contact() {
   const [sectors, setSectors] = useState([]);
   const [companiesList, setCompaniesList] = useState([]);
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [fullName, setFullName] = useState('');
 
   // PHONE + EMAIL bitta input
   const [contactValue, setContactValue] = useState('');
 
-  const [priority, setPriority] = useState('medium'); // Yangi priority
 
-  const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
   const [address, setAddress] = useState('')
 
   // To‘liq murojaat turlari enum
   const requestTypes = [
-    { value: 'complaint', label: 'Shikoyat' },
-    { value: 'suggestion', label: 'Taklif' },
-    { value: 'question', label: 'Savol' },
-    { value: 'request', label: 'So‘rov' },
-    { value: 'appreciation', label: 'Minnatdorchilik' },
-    { value: 'other', label: 'Boshqa' },
+    { value: 'complaint', label: t('contact.form.type.complaint') },
+    { value: 'suggestion', label: t('contact.form.type.suggestion') },
+    { value: 'question', label: t('contact.form.type.question') },
+    { value: 'request', label: t('contact.form.type.request') },
+    { value: 'appreciation', label: t('contact.form.type.appreciation') },
+    { value: 'other', label: t('contact.form.type.other') },
   ];
 
   // Telefon yoki email ekanini aniqlash
@@ -58,7 +56,7 @@ export function Contact() {
     {
       icon: MapPin,
       title: t('contact.address'),
-      details: ['Qarshi shahri, Mustaqillik ko‘chasi, 1-uy', 'Qashqadaryo viloyati, O‘zbekiston'],
+      details: [t('contact.address.line1'), t('contact.address.line2')],
     },
     {
       icon: Phone,
@@ -73,7 +71,7 @@ export function Contact() {
     {
       icon: Clock,
       title: t('contact.hours'),
-      details: ['Dushanba–Juma: 9:00–18:00', 'Shanba: 9:00–13:00'],
+      details: [t('contact.hours.weekdays'), t('contact.hours.saturday')],
     },
   ];
   
@@ -108,14 +106,11 @@ export function Contact() {
     const { phone, email } = detectContactType(contactValue);
 
     const data: createAppeals = {
-      firstName,
-      lastName,
-      title,
+      fullName,
       message,
       type: requestType,
       sector: sectorType,
       company: companies,
-      priority,
       location: {
         district: "",
         address
@@ -135,8 +130,17 @@ export function Contact() {
     try {
       const res = await createAppeals(data);
       console.log(res);
+      toast.success(t('contact.toast.success'));
+      setFullName('');
+      setContactValue('');
+      setRequestType('');
+      setSectorType('');
+      setCompanies('');
+      setMessage('');
+      setAddress('');
     } catch (err) {
       console.log(err);
+      toast.error(t('contact.toast.error'));
     }
   };
 
@@ -192,39 +196,43 @@ export function Contact() {
 
             <form className="space-y-4" onSubmit={handleSubmit}>
 
-              {/* FIRST + LAST NAME */}
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.firstname')}</label>
-                  <Input value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder={t('contact.form.firstname')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
-                </div>
-
-                <div>
-                  <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.lastname')}</label>
-                  <Input value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder={t('contact.form.lastname')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
-                </div>
+              {/* FULL NAME */}
+              <div>
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">
+                  {t('contact.form.fullName.label')}
+                </label>
+                <Input
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder={t('contact.form.fullName.placeholder')}
+                  className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white"
+                />
               </div>
 
               {/* PHONE + EMAIL COMBINED */}
               <div>
-                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Telefon yoki Email</label>
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">
+                  {t('contact.form.contactValue.label')}
+                </label>
                 <Input
                   value={contactValue}
                   onChange={(e) => setContactValue(e.target.value)}
-                  placeholder="+998 (__) ___-__-__ yoki example@gmail.com kiriting"
+                  placeholder={t('contact.form.contactValue.placeholder')}
                   className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
 
               {/* SECTOR */}
               <div>
-                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Sektor</label>
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">
+                  {t('contact.form.sector.label')}
+                </label>
                 <select
                   value={sectorType}
                   onChange={(e) => setSectorType(e.target.value)}
                   className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
-                  <option value="">Sektorni tanlang</option>
+                  <option value="">{t('contact.form.sector.placeholder')}</option>
                   {sectors.map((s: any) => (
                     <option key={s.slug} value={s.slug}>{s.name}</option>
                   ))}
@@ -233,13 +241,15 @@ export function Contact() {
 
               {/* COMPANIES */}
               <div>
-                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Tashkilot</label>
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">
+                  {t('contact.form.company.label')}
+                </label>
                 <select
                   value={companies}
                   onChange={(e) => setCompanies(e.target.value)}
                   className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
-                  <option value="">Tashkilotni tanlang</option>
+                  <option value="">{t('contact.form.company.placeholder')}</option>
                   {companiesList.map((c: any) => (
                     <option key={c._id} value={c._id}>{c.name}</option>
                   ))}
@@ -248,44 +258,32 @@ export function Contact() {
 
               {/* REQUEST TYPE */}
               <div>
-                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Murojaat turi</label>
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">
+                  {t('contact.form.type.label')}
+                </label>
                 <select
                   value={requestType}
                   onChange={(e) => setRequestType(e.target.value)}
                   className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
-                  <option value="">Murojaat turini tanlang</option>
-                  {requestTypes.map((t) => (
-                    <option key={t.value} value={t.value}>{t.label}</option>
+                  <option value="">{t('contact.form.type.placeholder')}</option>
+                  {requestTypes.map((reqType) => (
+                    <option key={reqType.value} value={reqType.value}>{reqType.label}</option>
                   ))}
                 </select>
               </div>
 
-              {/* PRIORITY SELECT – YANGI QO‘SHILDI */}
-              <div>
-                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Muhimlik darajasi</label>
-                <select
-                  value={priority}
-                  onChange={(e) => setPriority(e.target.value)}
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="low">Past</option>
-                  <option value="medium">O‘rta</option>
-                  <option value="high">Yuqori</option>
-                  <option value="urgent">Shoshilinch</option>
-                </select>
-              </div>
-
-              {/* SUBJECT */}
-              <div>
-                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">{t('contact.form.subject')}</label>
-                <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t('contact.form.subject')} className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
-              </div>
-
               {/* ADDRESS */}
               <div>
-                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">Address</label>
-                <Input value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Manzilni kiriting' className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white" />
+                <label className="block text-sm mb-2 text-gray-700 dark:text-gray-300">
+                  {t('contact.form.address.label')}
+                </label>
+                <Input
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder={t('contact.form.address.placeholder')}
+                  className="dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white"
+                />
               </div>
 
               {/* MESSAGE */}
